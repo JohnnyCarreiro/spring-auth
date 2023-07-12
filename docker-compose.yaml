@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  auth-db:
+    profiles:
+      - dev
+    container_name: crm-db
+    build: ./.docker/postgresql
+    restart: always
+    tty: true
+    volumes:
+      - ./.docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=auth
+    ports:
+      - "5433:5432"
